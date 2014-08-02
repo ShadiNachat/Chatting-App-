@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kontalk Android client
+     Copyright (C) 2014 Kontalk Devteam <devteam@kontalk.org>
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:key="pref_network_settings"
+        android:title="@string/pref_network_settings">
+        <Preference android:key="pref_update_server_list"
+            android:title="@string/pref_update_server_list"/>
+		<EditTextPreference android:key="pref_network_uri"
+		    android:dialogTitle="@string/pref_network_uri"
+		    android:positiveButtonText="@android:string/ok"
+		    android:negativeButtonText="@android:string/cancel"
+		    android:title="@string/pref_network_uri"
+            android:summary="@string/pref_title_network_uri"
+		    android:singleLine="true" android:inputType="textUri"/>
+        <CheckBoxPreference android:key="pref_push_notifications"
+            android:summary="@string/pref_title_push_notifications"
+            android:title="@string/pref_push_notifications"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="pref_messaging_settings"
+        android:title="@string/pref_messaging_settings">
+        <PreferenceScreen android:title="@string/pref_privacy_settings"
+            android:persistent="false">
+            <CheckBoxPreference android:key="pref_encrypt"
+                android:summaryOff="@string/pref_title_off_encrypt"
+                android:summaryOn="@string/pref_title_on_encrypt"
+                android:title="@string/pref_encrypt"
+                android:defaultValue="true"/>
+            <!--
+            <CheckBoxPreference android:key="pref_encrypt_userdata"
+                android:summaryOff="@string/pref_title_off_encrypt_userdata"
+                android:summaryOn="@string/pref_title_on_encrypt_userdata"
+                android:title="@string/pref_encrypt_userdata"
+                android:defaultValue="true"/>
+             -->
+            <CheckBoxPreference android:key="pref_auto_accept_subscriptions"
+                android:title="@string/pref_auto_accept_subscriptions"
+                android:summary="@string/pref_title_auto_accept_subscriptions"
+                android:defaultValue="false"/>
+            <CheckBoxPreference android:key="pref_send_typing"
+                android:title="@string/pref_send_typing"
+                android:defaultValue="true"/>
+            <!--
+            <CheckBoxPreference android:key="pref_hide_presence"
+                android:summaryOff="@string/pref_title_off_hide_presence"
+                android:summaryOn="@string/pref_title_on_hide_presence"
+                android:title="@string/pref_hide_presence"
+                android:defaultValue="false"/>
+             -->
+        </PreferenceScreen>
+        <EditTextPreference android:key="pref_remove_prefix"
+            android:dialogTitle="@string/pref_remove_prefix"
+            android:positiveButtonText="@android:string/ok"
+            android:negativeButtonText="@android:string/cancel"
+            android:title="@string/pref_remove_prefix"
+            android:summary="@string/pref_title_remove_prefix"
+            android:singleLine="true" android:inputType="phone"/>
+        <CheckBoxPreference android:key="pref_sync_sim_contacts"
+            android:summaryOff="@string/pref_title_off_sync_sim_contacts"
+            android:summaryOn="@string/pref_title_on_sync_sim_contacts"
+            android:title="@string/pref_sync_sim_contacts"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="pref_appearance_settings"
+        android:title="@string/pref_appearance_settings">
+        <ListPreference android:key="pref_font_size"
+            android:title="@string/pref_font_size"
+            android:entries="@array/fontsize_labels"
+            android:entryValues="@array/fontsize_values"
+            android:defaultValue="medium"/>
+        <CheckBoxPreference android:key="pref_custom_background"
+            android:title="@string/pref_custom_background"
+            android:summaryOff="@string/pref_title_off_custom_background"
+            android:summaryOn="@string/pref_title_on_custom_background"/>
+        <Preference android:key="pref_background_uri"
+            android:title="@string/pref_background_uri"
+            android:summary="@string/pref_title_background_uri"
+            android:dependency="pref_custom_background"/>
+        <ListPreference android:key="pref_balloons"
+            android:title="@string/pref_balloons"
+            android:summary="@string/pref_title_balloons"
+            android:entries="@array/balloons_labels"
+            android:entryValues="@array/balloons_values"
+            android:defaultValue="classic"/>
+        <CheckBoxPreference android:key="pref_text_enter"
+            android:title="@string/pref_text_enter"
+            android:summaryOff="@string/pref_title_off_text_enter"
+            android:summaryOn="@string/pref_title_on_text_enter"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="pref_notification_settings"
+        android:title="@string/pref_notification_settings">
+        <CheckBoxPreference android:key="pref_enable_notifications"
+            android:summary="@string/pref_title_enable_notifications"
+            android:title="@string/pref_enable_notifications"
+            android:defaultValue="true"/>
+        <RingtonePreference android:key="pref_ringtone"
+            android:dependency="pref_enable_notifications"
+            android:title="@string/pref_ringtone"
+            android:ringtoneType="notification"
+            android:defaultValue="content://settings/system/notification_sound"
+            android:showDefault="true"
+            android:showSilent="true"/>
+        <ListPreference android:key="pref_vibrate"
+            android:dependency="pref_enable_notifications"
+            android:title="@string/pref_vibrate"
+            android:summary="@string/pref_title_vibrate"
+            android:entries="@array/vibrate_labels"
+            android:entryValues="@array/vibrate_values"
+            android:defaultValue="always"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="pref_maintenance"
+        android:title="@string/pref_maintenance">
+        <ListPreference android:key="pref_idle_time"
+            android:title="@string/pref_idle_time"
+            android:summary="@string/pref_title_idle_time"
+            android:entries="@array/idle_time_labels"
+            android:entryValues="@array/idle_time_values"
+            android:defaultValue="60000"/>
+        <ListPreference android:key="pref_wakeup_time"
+            android:title="@string/pref_wakeup_time"
+            android:summary="@string/pref_title_wakeup_time"
+            android:entries="@array/wakeup_time_labels"
+            android:entryValues="@array/wakeup_time_values"
+            android:defaultValue="900000"/>
+        <Preference android:key="pref_restart_msgcenter"
+            android:summary="@string/pref_title_restart_msgcenter"
+            android:title="@string/pref_restart_msgcenter"/>
+        <Preference android:key="pref_change_passphrase"
+            android:title="@string/pref_change_passphrase"/>
+        <Preference android:key="pref_regenerate_keypair"
+            android:summary="@string/pref_title_regenerate_keypair"
+            android:title="@string/pref_regenerate_keypair"/>
+        <Preference android:key="pref_export_keypair"
+            android:summary="@string/pref_title_export_keypair"
+            android:title="@string/pref_export_keypair"/>
+        <Preference android:key="pref_import_keypair"
+            android:summary="@string/pref_title_import_keypair"
+            android:title="@string/pref_import_keypair"/>
+        <CheckBoxPreference android:key="pref_accept_any_certificate"
+            android:title="@string/pref_accept_any_certificate"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:key="pref_other"
+        android:title="@string/pref_other">
+        <Preference android:key="pref_donate"
+            android:title="@string/pref_donate">
+            <intent
+             android:targetClass="org.kontalk.ui.AboutActivity"
+             android:targetPackage="org.kontalk"
+             android:action="org.kontalk.DONATION" />
+        </Preference>
+        <Preference android:key="pref_about"
+            android:title="@string/pref_about">
+            <intent
+             android:targetClass="org.kontalk.ui.AboutActivity"
+             android:targetPackage="org.kontalk" />
+        </Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

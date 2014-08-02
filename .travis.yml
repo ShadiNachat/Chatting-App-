@@ -1,0 +1,8 @@
+language: android
+android:
+  components:
+    - build-tools-20.0.0
+  licences:
+    - 'android-sdk-license-.+'
+install: ./setup "${ANDROID_HOME}"
+script: ./gradlew build

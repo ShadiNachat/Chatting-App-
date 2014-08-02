@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kontalk Android client
+     Copyright (C) 2014 Kontalk Devteam <devteam@kontalk.org>
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<org.kontalk.ui.ConversationListItem xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:paddingRight="10dip" >
+    <!-- android:background="@drawable/conversation_item_background_unread" -->
+
+    <android.widget.QuickContactBadge
+        android:id="@+id/avatar"
+        android:layout_marginLeft="@dimen/conv_list_margin_left"
+        android:layout_centerVertical="true"
+        style="?android:attr/quickContactBadgeStyleWindowSmall" />
+
+    <ImageView
+        android:id="@+id/presence"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="20dip"
+         />
+
+    <TextView android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:layout_marginTop="6dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginLeft="7dip"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/avatar"
+        android:layout_toLeftOf="@id/presence"
+        android:layout_alignWithParentIfMissing="true"
+        android:ellipsize="marquee"  />
+        <!-- android:src="@drawable/ic_list_alert_sms_failed" -->
+
+    <ImageView android:id="@+id/attachment"
+        android:layout_marginLeft="3dip"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_toLeftOf="@+id/emblems"
+        android:layout_alignBottom="@+id/date"
+        />
+        <!-- android:src="@drawable/ic_attachment_universal_small" -->
+
+    <TextView android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="7dip"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/avatar"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toLeftOf="@+id/emblems"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/from"
+        android:layout_alignBottom="@+id/from"
+        android:layout_alignRight="@+id/from"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/grayed_out" />
+
+    <FrameLayout android:id="@+id/emblems"
+        android:layout_width="wrap_content"
+        android:layout_height="22dip"
+        android:layout_marginLeft="4dip"
+        android:layout_alignRight="@+id/from"
+        android:layout_alignTop="@+id/subject">
+
+	    <ImageView
+	        android:id="@+id/error"
+	        android:layout_width="22dip"
+	        android:layout_height="fill_parent"
+	        android:visibility="gone" />
+
+	    <TextView
+	        android:id="@+id/counter"
+            style="@style/TextAppearance.Widget.ConversationCountBadge"
+	        android:layout_width="wrap_content"
+	        android:minWidth="22dip"
+	        android:layout_height="fill_parent"
+	        android:gravity="center"
+	        android:visibility="gone" />
+
+    </FrameLayout>
+
+</org.kontalk.ui.ConversationListItem>

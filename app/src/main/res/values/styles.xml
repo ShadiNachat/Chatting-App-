@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kontalk Android client
+     Copyright (C) 2014 Kontalk Devteam <devteam@kontalk.org>
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- default theme selector -->
+  <style name="Theme.Light" parent="@style/Theme.AppCompat.Light">
+      <item name="actionBarStyle">@style/Widget.Light.ActionBar.Blue.Bold</item>
+      <item name="actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
+      </style>
+
+  <style name="Theme.Light.Subtitle" parent="@style/Theme.Light">
+      <item name="actionBarStyle">@style/Widget.Light.ActionBar.Blue</item>
+  </style>
+
+  <style name="Widget.Light.ActionBar.Blue" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+    <item name="background">@drawable/titlebar_bg</item>
+    <item name="android:background">@drawable/titlebar_bg</item>
+    <item name="titleTextStyle">@style/TextAppearance.Widget.ActionBar.Title.Inverse</item>
+    <item name="subtitleTextStyle">@style/TextAppearance.Widget.ActionBar.Subtitle.Inverse</item>
+  </style>
+
+  <style name="Widget.Light.ActionBar.Blue.Bold" parent="@style/Widget.Light.ActionBar.Blue">
+    <item name="titleTextStyle">@style/TextAppearance.Widget.ActionBar.Title.Inverse.Bold</item>
+  </style>
+
+  <style name="TextAppearance.Widget.ActionBar.Title.Inverse.Bold"
+      parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+      <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="TextAppearance.Widget.ActionBar.Title.Inverse"
+      parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+  </style>
+
+  <style name="TextAppearance.Widget.ActionBar.Subtitle.Inverse"
+      parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse">
+  </style>
+
+  <style name="Widget.ActionButton.Overflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+    <item name="android:src">@drawable/ic_menu_overflow</item>
+  </style>
+
+  <!--
+  <style name="Widget.ProgressBar" parent="android:Widget.ProgressBar.Inverse">
+    <item name="android:minWidth">24dip</item>
+    <item name="android:maxWidth">24dip</item>
+    <item name="android:minHeight">24dip</item>
+    <item name="android:maxHeight">24dip</item>
+    <item name="android:layout_marginRight">24dip</item>
+  </style>
+   -->
+
+  <!-- default light-to-dark theme selector -->
+  <style name="Theme.Light2" parent="@android:style/Theme"/>
+
+  <style name="TextAppearance.Widget.ConversationCountBadge"
+      parent="@android:style/TextAppearance.Small.Inverse">
+    <item name="android:textAppearance">?android:attr/textAppearanceSmallInverse</item>
+    <item name="android:textColor">#ffffff</item>
+    <item name="android:textSize">12sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:background">@drawable/conversation_badge</item>
+    <item name="android:paddingLeft">4dp</item>
+    <item name="android:paddingRight">4dp</item>
+
+  </style>
+
+</resources>

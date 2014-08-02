@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Kontalk Android client
+     Copyright (C) 2014 Kontalk Devteam <devteam@kontalk.org>
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      package="org.kontalk"
+      android:versionCode="34"
+      android:versionName="3.0b1"
+      android:installLocation="internalOnly">
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"
+        tools:replace="minSdkVersion"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <!-- do not make telephony and touchscreen mandatory -->
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+
+    <application android:name=".Kontalk"
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/Theme.Light"
+        android:allowBackup="true">
+
+        <!-- Services -->
+        <service android:name=".service.msgcenter.MessageCenterService"
+            android:label="@string/service_name"/>
+        <service android:name=".authenticator.AccountAuthenticatorService"
+                android:label="@string/authenticator_name">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator"/>
+        </service>
+        <service android:name=".sync.ContactsSyncAdapterService"
+                android:label="@string/sync_service_name">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/sync_contacts"/>
+            <meta-data android:name="android.provider.CONTACTS_STRUCTURE" android:resource="@xml/contacts"/>
+        </service>
+        <service android:name=".service.DownloadService"
+            android:label="@string/download_service"/>
+        <service android:name=".service.UploadService"/>
+        <service android:name=".service.KeyPairGeneratorService"/>
+
+        <!-- Content providers -->
+        <provider android:name=".provider.MessagesProvider"
+            android:exported="false"
+            android:authorities="org.kontalk.messages"/>
+
+        <provider android:name=".provider.UsersProvider"
+            android:exported="false"
+            android:authorities="org.kontalk.users"/>
+
+        <!-- Broadcast receivers -->
+        <receiver android:name=".service.SystemBootStartup"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".service.NetworkStateReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.BACKGROUND_DATA_SETTING_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Other -->
+        <meta-data android:name="android.app.default_searchable"
+            android:value=".ui.SearchActivity" />
+
+        <!-- Activities -->
+        <activity android:name=".ui.ConversationList"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.SearchActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <activity android:name=".ui.ComposeMessage"
+            android:theme="@style/Theme.Light.Subtitle"
+            android:configChanges="keyboardHidden"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="vnd.android.cursor.item/org.kontalk.user"
+                    android:host="com.android.contacts"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="text/vcard" />
+                <data android:mimeType="text/x-vcard" />
+                </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.PreferencesActivity" android:theme="@style/Theme.Light2">
+            <intent-filter>
+                <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.BootstrapPreferences" android:theme="@style/Theme.Light2"/>
+
+        <activity android:name=".ui.NumberValidation"
+            android:theme="@style/Theme.Light"/>
+
+        <activity android:name=".ui.CodeValidation"
+            android:theme="@style/Theme.Light"/>
+
+        <activity android:name=".ui.ContactsListActivity"
+            android:label="@string/contacts_list_title"
+            android:theme="@style/Theme.Light"/>
+
+        <activity android:name=".ui.StatusActivity"
+            android:label="@string/status_activity_title"
+            android:theme="@style/Theme.Light"/>
+
+        <activity android:name=".ui.AboutActivity"
+            android:theme="@style/Theme.Light"/>
+
+        <!--
+        <activity android:name=".ui.QuickReplyActivity"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustPan"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Dialog">
+            // this is just for testing
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+         -->
+
+    </application>
+</manifest>

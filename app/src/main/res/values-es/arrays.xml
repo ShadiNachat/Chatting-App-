@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string-array name="vibrate_labels">
+    <item>Siempre</item>
+    <item>Solamente en modo silencio</item>
+    <item>Nunca</item>
+  </string-array>
+  <string-array name="fontsize_labels">
+    <item>Pequeño</item>
+    <item>Mediano</item>
+    <item>Grande</item>
+  </string-array>
+  <string-array name="balloons_labels">
+    <item>Clásico</item>
+    <item>Clásico (antiguo)</item>
+    <item>iPhone</item>
+  </string-array>
+  <string-array name="idle_time_labels">
+    <item>1 minuto</item>
+    <item>2 minutos</item>
+    <item>3 minutos</item>
+    <item>4 minutos</item>
+    <item>5 minutos</item>
+  </string-array>
+  <string-array name="wakeup_time_labels">
+    <item>5 minutos</item>
+    <item>15 minutos</item>
+    <item>30 minutos</item>
+    <item>1 hora</item>
+    <item>3 horas</item>
+  </string-array>
+</resources>
